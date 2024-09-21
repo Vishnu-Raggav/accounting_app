@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div style="background: linear-gradient(to top, #151419 40%, #1F1D25 100%);" class="py-5 px-8 grow mx-8 mb-8 mt-14 rounded-2xl border-2 border-white border-opacity-5">
+    <div class="font-light text-sm flex gap-6">
+        <span>All</span>
+        <span>Recievables</span>
+        <span>Payables</span>
+    </div>
+
+    <div class="w-full"></div>
+        <div class="flex font-light text-sm opacity-50 mt-8">
+            <span>Transaction ID</span>
+            <span class="ml-20">Date</span>
+            <span class="ml-32">Account</span>
+            <span class="ml-32">Category</span>
+            <span class="ml-28">Debit</span>
+            <span class="ml-28">Credit</span>
+        </div>
+        <hr class="opacity-50 mt-4">
+       
+        <div class="text-sm font-light mt-4 grid grid-cols-[175px_163px_188px_178px_148px_1fr] auto-rows-[30px]">
+            {% if entries %}
+            {% for entry in entries %}
+
+                    <span>INV-{{ entry.transaction_id }}</span>
+                    <span>{{ entry.start_date|date:"d M Y" }}</span>
+                    <span>{{ entry.debit_account_name }}</span>
+                    <span>{{ entry.category }}</span>
+                    <span>{{ entry.amount }}</span>
+                    <span>-</span>
+
+                    <span>INV-{{ entry.transaction_id }}</span>
+                    <span>{{ entry.start_date|date:"d M Y" }}</span>
+                    <span>{{ entry.credit_account_name }}</span>
+                    <span>{{ entry.category }}</span>
+                    <span>-</span>
+                    <span>{{ entry.amount }}</span>
+
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

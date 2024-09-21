@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+
+{% block breadcrumbs %}
+<span class="">Invoices</span>
+<span class="material-symbols-rounded text-xs px-2">chevron_right</span>
+{% endblock %}
+
+
+{% block buttons %}
+
+<div class="ml-auto flex gap-7">
+
+   <button
+        class="px-3 flex items-center justify-center bg-[#24222B] text-white border-[1px] border-white border-opacity-5 font-light text-sm rounded-lg h-9">
+        <span class="material-symbols-rounded font-extralight mr-1">close</span>
+        <a href="/invoices"><span>Cancel</span></a>
+    </button>
+    
+    <button id="save-button"
+        class="px-3 flex items-center justify-center bg-white text-black font-light text-sm rounded-lg h-9 hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.5)]">
+        <span class="material-symbols-rounded font-extralight mr-1">check</span>
+        <span>Save</span>
+    </button>
+
+</div>
+
+{% endblock buttons %}
+
+{% block content %}
+
+<div class="mt-20 mx-8">
+    <div class="flex items-center h-9">
+        <label for="date" class="text-[13px] font-extralight">Date :</label>
+        <input id="date" placeholder="YYYY-MM-DD" type="text" pattern="[0-9\-]*"
+        class="w-32 text-sm pl-4 h-full ml-4 rounded-lg bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none
+        placeholder:text-sm placeholder:opacity-50">
+
+        <label for="due_date" class="text-[13px] font-extralight ml-9">Due Date :</label>
+        <input id="due_date" placeholder="YYYY-MM-DD" type="text" pattern="[0-9\-]*"
+        class="w-32 text-sm pl-4 h-full ml-4 rounded-lg bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none
+        placeholder:text-sm placeholder:opacity-50">
+
+        <label for="customer" class="text-[13px] font-extralight ml-9">Customer :</label>
+        <input id="customer" type="text"
+        class="w-72 text-sm pl-4 h-full ml-4 rounded-lg bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+    </div>
+    <div class="text-[13px] font-extralight border-y-[1px] border-white border-opacity-30 mt-8 h-12 flex items-center">
+        <span>Item</span>
+        <span class="ml-64">Qty</span>
+        <span class="ml-24">Unit Price</span>
+        <span class="ml-28">Discount</span>
+        <span class="ml-24">Tax Rate</span>
+        <span class="ml-24">Total</span>
+    </div>
+    <div class="mt-7 grid grid-cols-[280px_120px_175px_150px_150px_1fr] auto-rows-[38px] gap-y-6">
+        <input type="text" placeholder="Item Name"
+        class="field_1 w-[90%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none
+        placeholder:text-sm placeholder:opacity-50 placeholder:font-light">
+
+        <input type="number"
+        class="field_1 w-[60%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_1 w-[80%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_1 w-[70%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_1 w-[70%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <div class="flex items-center h-full">
+            <span id="field_1_total" class="font-light">0.00</span>
+        </div>
+
+        <input type="text" placeholder="Item Name"
+        class="field_2 w-[90%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none
+        placeholder:text-sm placeholder:opacity-50 placeholder:font-light">
+
+        <input type="number"
+        class="field_2 w-[60%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_2 w-[80%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_2 w-[70%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_2 w-[70%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <div class="flex items-center h-full">
+            <span id="field_2_total"  class="font-light">0.00</span>
+        </div>
+
+        <input type="text" placeholder="Item Name"
+        class="field_3 w-[90%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none
+        placeholder:text-sm placeholder:opacity-50 placeholder:font-light">
+
+        <input type="number"
+        class="field_3 w-[60%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_3 w-[80%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_3 w-[70%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <input type="number"
+        class="field_3 w-[70%] text-sm pl-4 h-full rounded-xl bg-[#24222B] border-[1px] border-white border-opacity-5 focus:outline-none">
+
+        <div class="flex items-center h-full">
+            <span id="field_3_total" class="font-light">0.00</span>
+        </div>
+    </div>
+    <button class="flex items-center justify-center bg-white text-black w-[110px] font-light text-sm rounded-lg h-9 mt-6 hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.5)]">
+        <span class="material-symbols-rounded font-light mr-1">add</span>
+        <span>Add Item</span>
+    </button>
+    <hr class=" border-white border-opacity-30 mt-9">
+
+    <div class="flex">
+        <div class="ml-auto font-extralight text-sm mt-7">
+            <div class="flex gap-x-28 mr-[115px]">
+                <span class="mr-2 pl-14">Subtotal</span>
+                <span id="subtotal" class="ml-auto">0.00</span>
+            </div>
+            <div class="flex gap-x-28 mt-4 mr-[115px]">
+                <span class="pl-14">GST</span>
+                <span class="ml-auto">0.00</span>
+            </div>
+            <hr class="mt-8 opacity-30">
+            <div class="font-medium flex gap-x-28 mt-8 mr-[115px] text-2xl">
+                <span class="pl-14">Total</span>
+                <span class="ml-auto">0.00</span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock content %}

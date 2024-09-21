@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block buttons %}
+
+<a class="ml-auto h-[90%] bg-white text-black w-fit rounded-lg hover:drop-shadow-[0_0px_10px_rgba(255,255,255,0.5)]" href="{% url 'create_invoice' %}">
+    <button class="h-full flex justify-center items-center px-2 pr-3 text-sm font-light">
+        <span class="material-symbols-rounded pr-1 font-light text-md">add</span>
+        <span>New Invoice</span>
+    </button>
+</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div style="background: linear-gradient(to top, #151419 40%, #1F1D25 100%);" class="py-5 px-8 grow mx-8 mb-8 mt-14 rounded-2xl border-2 border-white border-opacity-5">
+    <div class="font-light text-sm flex gap-6">
+        <span>All</span>
+        <span>Paid</span>
+        <span>Overdue</span>
+    </div>
+    <div class="w-full">
+        <div class="flex font-light text-sm opacity-50 mt-8">
+            <span>ID</span>
+            <span class="ml-32">Due Date</span>
+            <span class="ml-32">Customer</span>
+            <span class="ml-[180px]">Due</span>
+            <span class="ml-32">Status</span>
+            <span class="ml-28">Paid</span>
+        </div>
+        <hr class="opacity-50 mt-4">
+         
+        <div class="text-sm font-light mt-4 grid grid-cols-[140px_195px_248px_158px_160px_1fr] auto-rows-[30px]">
+            {% if invoice_rows %}
+            {% for instance_dict in invoice_rows %}
+                    <span>{{ instance_dict.id }}</span>
+                    <span>{{ instance_dict.due_date|date:"d M Y" }}</span>
+                    <span>{{ instance_dict.customer }}</span>
+                    <span>{{ instance_dict.due }}</span>
+                    <span>{{ instance_dict.status }}</span>
+                    <div class="w-5 aspect-square border-2 border-white rounded-3xl"></div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="w-screen h-screen flex bg-[#151419] overflow-hidden">
+    <div class="h-full w-full md:w-[20%] flex flex-col px-5 py-7">
+    
+    <!-- Account Box -->
+    <div class="flex justify-center items-center w-full h-16 rounded-2xl bg-gradient-to-t from-[#151419] to-[#1F1D25] border-[1px] border-white border-opacity-15">
+        <img class="flex w-[35px] aspect-square rounded-3xl" src="{% static 'placeholder.jpg' %}" />
+        <div class="w-[65%] h-full flex flex-col justify-center pl-4">
+            <span class="text-sm font-light text-white">MansonObasi</span>
+            <span class="text-[10px] text-white opacity-30">@manson_87</span>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <div class="mt-10 ml-2 mr-6">
+        <div class="flex items-center text-white opacity-50">
+            <span class="text-[10px]">MENU</span>
+            <span class="material-symbols-outlined text-white ml-auto text-[22px]" style="font-variation-settings: 'wght' 300;">list</span>
+        </div>
+
+        <div class="mt-6 mr-6">
+            {% for page_name, icon_name in page_icon_pairs %}
+                <a href="{% url page_name|lower %}">
+                    <div class="{% if current_page == page_name %}bg-[#6A46FB] drop-shadow-[0_0px_15px_rgba(106,70,251,0.5)]{% endif %} font-light py-[10px] mt-[4px] flex pl-2 items-center text-white text-[12px] rounded-md" style="font-family: Poppins;">
+                        <span class="material-symbols-rounded text-[18px] {% if current_page != page_name %}opacity-50{% endif %}">{{ icon_name }}</span>
+                        <span class="ml-4 {% if current_page != page_name %}opacity-50{% endif %}">{{ page_name }}</span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    </div>
+
+    <div style="font-family: Poppins;" class="grow p-7">
+        <div style="background: linear-gradient(to top, #151419 40%, #1F1D25 100%);" class="text-white w-full h-full flex flex-col rounded-2xl border-2 border-white border-opacity-5">
+            <!-- Breadcrumbs -->
+            <div class="w-full h-11 flex items-center text-xs px-8">
+                <span class="">Home</span>
+                <span class="material-symbols-rounded text-xs px-2">chevron_right</span>
+                {% block breadcrumbs %}
+                {% endblock %}
+            </div>
+            <hr class="w-full border-[1px] border-white border-opacity-5">
+           
+            <div class="flex items-center mx-8 mt-8 h-10">
+                {% if page_name and icon_name %}
+                    <span class="material-symbols-rounded text-[40px]">{{ icon_name }}</span>
+                    <h1 class="text-4xl ml-4">{{ page_name }}</h1>
+                {% else %}
+                    <span class="material-symbols-rounded text-[40px]">{{ current_icon }}</span>
+                    <h1 class="text-4xl ml-4">{{ current_page }}</h1>
+                {% endif %}
+
+                {% block buttons %}
+                {% endblock %}
+            </div>
+
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+    {% if js_url %}
+        <script src="{% static js_url %}"></script>
+    {% endif %}
+</body>
+</html>
